@@ -109,11 +109,17 @@ fi
 # 2. Select node version
 selectNodeVersion
 
-# 3. Install NPM packages
-if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install --production
-  eval $NPM_CMD install --only=dev
+
+# 2. Install NPM packages
+
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  echo "test message 9999"
+  cd "$DEPLOYMENT_SOURCE"
+  echo "test message 9998 $DEPLOYMENT_SOURCE"
+  eval /opt/nodejs/10.1.0/bin/npm install --production
+  echo "test message 9997 $DEPLOYMENT_SOURCE"
+  eval /opt/nodejs/10.1.0/bin/npm install --only=dev
+  echo "test message 9996 $DEPLOYMENT_SOURCE"
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
